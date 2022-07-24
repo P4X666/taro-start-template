@@ -1,0 +1,56 @@
+@danger: red;
+
+.form-wrap {
+  .row-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 25px;
+    // &.row-no-label {
+    //   flex-direction: row-reverse;
+    // }
+    .form-item-label.error {
+      color: @danger
+    }
+    .form-item-control{
+      /** 处理 disabled 的情况 */
+      .at-input--disabled{
+        opacity: 1
+      }
+      /** 处理 error-icon 无法被点击的情况 */
+      .at-input__overlay {
+        right: 50px;
+      }
+    }
+    
+    // .form-item-required:before {
+    //   display: inline-block;
+    //   margin-right: 8px;
+    //   color: @danger;
+    //   font-size: 28px;
+    //   // font-family: SimSun, sans-serif;
+    //   line-height: 1;
+    //   content: "*";
+    // }
+    .form-item {
+      width: 100%;
+      // position: relative;
+      // width: 68%;
+      // padding-left: 2%;
+      // .form-item-has-error{
+      //   border-bottom: 1px solid @danger;
+      // }
+      // .form-item-error {
+      //   position: absolute;
+      //   bottom: -28px;
+      //   left: 2%;
+      //   line-height: 25px;
+      //   color: @danger;
+      //   min-width: 100px;
+      // }
+    }
+  }
+  .at-input{
+    margin-left: 0;
+  }
+}
