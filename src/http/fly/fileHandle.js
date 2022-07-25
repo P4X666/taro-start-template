@@ -1,12 +1,12 @@
 import Taro from '@tarojs/taro';
 import { TOKEN_KEY } from 'src/utils/constent';
 import { baseURL } from 'src/utils/global';
-import { getToken, loginUlr } from 'src/utils/token';
+import { getToken } from 'src/utils/token';
 
 const noAuthHandle = () => {
   const token = getToken();
   if (!token) {
-    Taro.redirectTo({ url: loginUlr });
+    Taro.redirectTo({ url: LOGIN_URL });
     return;
   }
   return token;

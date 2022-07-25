@@ -1,7 +1,8 @@
 export default defineAppConfig({
   pages: [
+    'pages/login/index',
     'pages/index/index',
-    'pages/simpleFormExample/index'
+    'pages/simpleFormExample/index',
     'pages/formExample/index',
   ],
   window: {
@@ -42,5 +43,8 @@ export default defineAppConfig({
     "scope.userLocation": {
       desc: "你的位置信息将用于小程序位置接口的效果展示"
     }
+  },
+  networkTimeout: {
+    uploadFile: 100000
   }
 })

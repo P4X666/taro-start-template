@@ -1,7 +1,7 @@
 import { baseURL } from '@/utils/global';
 import Taro from '@tarojs/taro';
-import { TOKEN_KEY } from 'src/utils/constent';
-import { getToken, loginUlr } from 'src/utils/token';
+import { LOGIN_URL, TOKEN_KEY } from 'src/utils/constent';
+import { getToken } from 'src/utils/token';
 // eslint-disable-next-line import/no-commonjs
 const Flyio = require('flyio/dist/npm/wx');
 
@@ -14,7 +14,7 @@ fly.config.baseURL = baseURL;
 const noAuthUrl = [ '/api/user/login' ];
 
 const isLoginPage = () => {
-  const loginRoutes = loginUlr.substring(1);
+  const loginRoutes = LOGIN_URL.substring(1);
   const pages = Taro.getCurrentPages();
   if (pages.length > 0) {
     const thisRoute = pages[pages.length - 1].route;
@@ -26,7 +26,7 @@ const isLoginPage = () => {
 const reLaunchLoginPage = () => {
   // 防止在登录页重复跳转
   if (!isLoginPage()) {
-    Taro.reLaunch({url: loginUlr});
+    Taro.reLaunch({url: LOGIN_URL});
   }
 }
 

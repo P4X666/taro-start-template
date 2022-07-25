@@ -1,8 +1,6 @@
 import Taro from '@tarojs/taro';
 import { TOKEN_KEY } from 'src/utils/constent';
 
-export const loginUlr = '/pages/login/phoneLogin/index';
-
 export const getToken = () => {
   let token = '';
   try {
