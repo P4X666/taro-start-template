@@ -1,0 +1,33 @@
+@primary: #016AFF;
+@default: #FCFCFC;
+
+.at-checkbox {
+  &::before {
+    border: none;
+  }
+  &::after {
+    border: none;
+  }
+}
+.at-button{
+  border-color: @default;
+  background: @default;
+  // 去除按钮过大的影响
+  margin: 0;
+}
+.at-button--primary {
+  border-color: @primary;
+  background: @primary;
+}
+
+.at-list__item-extra {
+  max-width: 400px;
+}
+.at-checkbox__option-cnt{
+  align-items: center;
+}
+
+page {
+  font-size: 32px;
+  background-color: #f5f6f9;
+}
