@@ -1,3 +1,4 @@
+import { showErrorMessage } from 'src/utils/common';
 import { baseURL } from '@/utils/global';
 import Taro from '@tarojs/taro';
 import { LOGIN_URL, TOKEN_KEY } from 'src/utils/constent';
@@ -58,17 +59,11 @@ fly.interceptors.response.use((response, promise) => {
   return promise.resolve(response.data);
 },
 (error, promise) => {
-  if (error.status === 401) {
+  if ([ 401, 404 ].includes(error.status)) {
     reLaunchLoginPage();
   }
   const errorMessage = error?.response?.data?.message;
-  if (errorMessage) {
-    Taro.showToast({
-      title: errorMessage,
-      icon: 'error',
-      duration: 2000
-    });
-  }
+  showErrorMessage(errorMessage);
 
   return promise.reject(error);
 });
