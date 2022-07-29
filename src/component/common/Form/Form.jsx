@@ -1,7 +1,6 @@
 import { View } from '@tarojs/components';
 import { forwardRef, useImperativeHandle } from 'react';
 import useFormStore, { FormContext } from './useFormStore';
-import './form.less';
 
 const Form = forwardRef((props, ref) => {
   const { name = 'form', children, initialValues } = props;
@@ -30,18 +29,11 @@ const Form = forwardRef((props, ref) => {
   } else {
     childrenNode = children;
   }
-  return <>
-    <View name={name} className="form-wrap">
-      <FormContext.Provider value={context}>
-        { childrenNode }
-      </FormContext.Provider>
-    </View>
-    {/* <View>
-      <View style={{ whiteSpace: 'pre-wrap' }}>{ JSON.stringify(fields) }</View>
-      <View style={{ whiteSpace: 'pre-wrap' }}>{ JSON.stringify(form) }</View>
-    </View> */}
-  </>;
-
+  return <View name={name} className="form-wrap">
+    <FormContext.Provider value={context}>
+      { childrenNode }
+    </FormContext.Provider>
+  </View>;
 });
 
 

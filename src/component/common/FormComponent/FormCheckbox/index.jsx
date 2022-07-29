@@ -1,4 +1,5 @@
 import { View } from '@tarojs/components';
+import React from 'react';
 import { AtCheckbox } from 'taro-ui';
 import styles from './index.module.less';
 
@@ -12,4 +13,4 @@ const FormCheckbox = (props) => {
     <AtCheckbox options={options} selectedList={[ value ]} />
   </View>;
 };
-export default FormCheckbox;
+export default React.memo(FormCheckbox);

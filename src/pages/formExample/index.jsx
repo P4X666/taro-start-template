@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { View, Button, Picker } from '@tarojs/components';
+import { View, Button } from '@tarojs/components';
 import Form from 'src/components/common/Form';
-import { AtInput } from 'taro-ui';
 import Taro from '@tarojs/taro';
-import { gradeList } from 'src/utils/constent';
+import { gradeList, multiSelector } from 'src/utils/constent';
+import { FormImagePicker, FormInput, FormPicker, FormRate, FormSwitch } from 'src/components/common/FormComponent';
 import styles from './index.module.less';
 
 const FormExample = () => {
@@ -21,10 +21,6 @@ const FormExample = () => {
     });
   };
 
-  // const location = {
-  //   latitude: '',
-  //   longitude: ''
-  // };
   const chooseLocation = () => {
     let params = {};
     Taro.chooseLocation({
@@ -42,22 +38,73 @@ const FormExample = () => {
     <View className={styles.wrapper}>
       <View className={styles.box}>
         <Form ref={formRef} initialValues={{ username: '用户名1' }}>
-          <Form.Item label="详细地址" name="address" rules={[ { type: 'string', required: true, message: '请选择详细地址' } ]}>
-            <AtInput disabled onClick={chooseLocation}>
+          <Form.Item label="用户名" name="userName" rules={[ { type: 'string', required: true, message: '请输入用户名' } ]}>
+            <FormInput />
+          </Form.Item>
+          <Form.Item label="曾用名" name="oldUserName" rules={[ { type: 'string', required: true, message: '请输入曾用名' } ]}>
+            <FormInput>
               <View className="at-icon at-icon-chevron-right"></View>
-            </AtInput>
+            </FormInput>
           </Form.Item>
-          <Form.Item>
-            <Picker mode="selector" range={gradeList} className={styles.required}>
-              {/* <AtList>
-                <AtListItem
-                  arrow="right"
-                  title="预警等级"
-                  extraText={formValue.warnLevel}
-                />
-              </AtList> */}
-            </Picker>
+          <Form.Item
+            label="居住地址"
+            name="address"
+            rules={[ { type: 'string', required: true, message: '请选择居住地址' } ]}
+          >
+            <FormPicker onClick={chooseLocation}></FormPicker>
           </Form.Item>
+          <Form.Item
+            label="单个选项"
+            name="singleSelect"
+            rules={[ { type: 'string', required: true, message: '请选择单个选项' } ]}
+          >
+            <FormPicker mode="selector" range={gradeList}></FormPicker>
+          </Form.Item>
+
+          <Form.Item
+            label="多个选项"
+            name="multiSelect"
+            rules={[ { type: 'string', required: true, message: '请选择多个选项' } ]}
+          >
+            <FormPicker mode="multiSelector" range={multiSelector}></FormPicker>
+          </Form.Item>
+          <Form.Item
+            label="选择日期"
+            name="dateSelect"
+            rules={[ { type: 'string', required: true, message: '请选择日期' } ]}
+          >
+            <FormPicker mode="date" range={multiSelector}></FormPicker>
+          </Form.Item>
+          <Form.Item
+            label="选择时间"
+            name="timeSelect"
+            rules={[ { type: 'string', required: true, message: '请选择日期' } ]}
+          >
+            <FormPicker mode="time" range={multiSelector}></FormPicker>
+          </Form.Item>
+          <Form.Item
+            label="评分组件"
+            name="rate"
+            rules={[ { type: 'number', required: true, message: '请选择评分' } ]}
+          >
+            <FormRate></FormRate>
+          </Form.Item>
+
+          <Form.Item
+            label="开关组件"
+            name="switch"
+            rules={[ { type: 'number', required: true, message: '请选择评分' } ]}
+          >
+            <FormSwitch />
+          </Form.Item>
+          <Form.Item
+            label="图片选择组件"
+            name="imagePicker"
+            rules={[ { type: 'number', required: true, message: '请选择评分' } ]}
+          >
+            <FormImagePicker />
+          </Form.Item>
+
         </Form>
         <Button form-type="submit" onClick={onSubmit} className={styles.submit}>提交</Button>
         <Button onClick={onReset} className={styles.submit}>重置</Button>

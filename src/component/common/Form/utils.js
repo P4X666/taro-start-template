@@ -32,7 +32,7 @@ export const addNonRequiredAttr = (source = {}, targetAttr = [ {key: '', value: 
   }
 };
 
-export const onErrorClick = (errMessage = '') => {
+export const _onErrorClick = (errMessage = '') => {
   Taro.showToast({
     title: errMessage,
     icon: 'none',

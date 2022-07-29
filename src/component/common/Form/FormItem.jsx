@@ -1,7 +1,8 @@
 import { View } from '@tarojs/components';
 import React, { useContext, useEffect } from 'react';
+import FormComponentWrapper from './FormComponentWrapper';
 import { FormContext } from './useFormStore';
-import { addNonRequiredAttr, getFormItemFirstChildren, onErrorClick } from './utils';
+import { addNonRequiredAttr, getFormItemFirstChildren, _onErrorClick } from './utils';
 
 const FormItem = (props) => {
   const {
@@ -15,7 +16,9 @@ const FormItem = (props) => {
     validateTrigger,
     labelName,
     isNewLine,
-    className = ''
+    className = '',
+    border,
+    onErrorClick = _onErrorClick
   } = props;
   const { dispatch, fields, initialValues, validateField } = useContext(FormContext);
 
@@ -49,32 +52,32 @@ const FormItem = (props) => {
     controlProps[validateTrigger] = onValueValidate;
   }
   const targetAttr = [
-    {key: labelName, value: isNewLine ? '' : label},
-    {key: 'required', value: isRequired},
-    /** 统一添加错误处理 */
-    // {key: 'error', value: hasError},
-    // {key: 'onErrorClick', value: () => onErrorClick(errors[0].message)},
+    {key: labelName, value: ''},
+    {key: 'required', value: false},
+    {key: 'error', value: false},
+    {key: 'onErrorClick', value: () => {}},
   ];
-  const defaultErrorClick = () => {
-    onErrorClick(errors[0].message);
-  };
   addNonRequiredAttr(controlProps, targetAttr);
   // 2 获取 children 数组的第一个元素
   const child = getFormItemFirstChildren(children);
-  /** 如果是 checkbox 之类的特殊 formItem ，报错操作交给使用者处理 */
-  // addErrorHandle(child, controlProps, errors);
   // 3 cloneElement，混合这个child 以及 手动的属性列表
+  // 在混合时需要将 label, required, error, onErrorClick, border 属性拦截
   const nodeProps = { ...child.props, ...controlProps };
   const returnChildNode = React.cloneElement(child, nodeProps);
 
+  const formItemWrapperProps = {
+    label,
+    required: isRequired,
+    error: hasError,
+    isNewLine,
+    onErrorClick: () => onErrorClick(errors[0].message),
+    border
+  };
   return <View className={`${className} row-wrap`}>
     <View className="form-item">
-      <View className="form-item-control">
-        {
-          label && <View className={`form-item-label ${hasError ? 'error' : ''}`} onClick={defaultErrorClick}>{label}</View>
-        }
+      <FormComponentWrapper {...formItemWrapperProps}>
         {returnChildNode}
-      </View>
+      </FormComponentWrapper>
     </View>
   </View>;
 };
@@ -84,7 +87,7 @@ FormItem.defaultProps = {
   trigger: 'onChange',
   validateTrigger: 'onBlur',
   getValueFromEvent: e => e,
-  labelName: 'title',
+  labelName: 'label',
   isNewLine: false
 };
 
