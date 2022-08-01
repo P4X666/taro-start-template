@@ -1,4 +1,3 @@
-import { View } from '@tarojs/components';
 import React, { useContext, useEffect } from 'react';
 import FormComponentWrapper from './FormComponentWrapper';
 import { FormContext } from './useFormStore';
@@ -18,7 +17,7 @@ const FormItem = (props) => {
     isNewLine,
     className = '',
     border,
-    onErrorClick = _onErrorClick
+    onErrorClick = _onErrorClick,
   } = props;
   const { dispatch, fields, initialValues, validateField } = useContext(FormContext);
 
@@ -35,6 +34,7 @@ const FormItem = (props) => {
   // 获取store 对应的 errors
   const errors = fieldState && fieldState.errors;
   const hasError = errors && errors.length > 0;
+  // 支持自定义校验
   const isRequired = rules?.some(rule => (typeof rule !== 'function') && rule.required);
 
   const onValueUpdate = (e) => {
@@ -71,15 +71,12 @@ const FormItem = (props) => {
     error: hasError,
     isNewLine,
     onErrorClick: () => onErrorClick(errors[0].message),
-    border
+    border,
+    className
   };
-  return <View className={`${className} row-wrap`}>
-    <View className="form-item">
-      <FormComponentWrapper {...formItemWrapperProps}>
-        {returnChildNode}
-      </FormComponentWrapper>
-    </View>
-  </View>;
+  return <FormComponentWrapper {...formItemWrapperProps}>
+    {returnChildNode}
+  </FormComponentWrapper>;
 };
 
 FormItem.defaultProps = {

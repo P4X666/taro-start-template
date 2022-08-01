@@ -6,4 +6,5 @@ const FormImagePicker = (props) => {
 
   return <AtImagePicker files={value || []} {...restProps} />;
 };
+FormImagePicker.type = 'FormItem';
 export default FormImagePicker;

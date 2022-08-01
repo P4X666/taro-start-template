@@ -4,9 +4,10 @@ import React from 'react';
 import './index.less';
 
 const FormComponentWrapper = (props) => {
-  const { label, required, error, onErrorClick, border} = props;
-  const wrapperClass = classNames('form-component-wrapper', {
+  const { className, label, required, error, onErrorClick, border, isNewLine} = props;
+  const wrapperClass = classNames(className, 'form-component-wrapper', {
     'form-component-wrapper--border': border,
+    'form-component-wrapper--new_line': isNewLine,
   });
   const labelClass = classNames('formLabel', {
     'formLabel--error': error,

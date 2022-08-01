@@ -1,8 +1,7 @@
 import { AtInput } from 'taro-ui';
-import './index.less';
 
 const FormInput = (props) => {
   return <AtInput {...props} />;
 };
-
+FormInput.type = 'FormItem';
 export default FormInput;

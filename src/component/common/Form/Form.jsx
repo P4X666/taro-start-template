@@ -1,9 +1,8 @@
-import { View } from '@tarojs/components';
 import { forwardRef, useImperativeHandle } from 'react';
 import useFormStore, { FormContext } from './useFormStore';
 
 const Form = forwardRef((props, ref) => {
-  const { name = 'form', children, initialValues } = props;
+  const { children, initialValues } = props;
   const { form, fields, dispatch, ...restProps} = useFormStore(initialValues);
   const { validateField } = restProps;
   /** 绑定在 form 实例上的方法，外部可直接使用 */
@@ -16,11 +15,8 @@ const Form = forwardRef((props, ref) => {
     dispatch,
     fields,
     initialValues,
-    validateField,
+    validateField
   };
-  console.log('---------------');
-  console.log(name, fields);
-  console.log('---------------');
 
   // 支持自定义渲染
   let childrenNode;
@@ -29,11 +25,9 @@ const Form = forwardRef((props, ref) => {
   } else {
     childrenNode = children;
   }
-  return <View name={name} className="form-wrap">
-    <FormContext.Provider value={context}>
-      { childrenNode }
-    </FormContext.Provider>
-  </View>;
+  return <FormContext.Provider value={context}>
+    { childrenNode }
+  </FormContext.Provider>;
 });
 
 

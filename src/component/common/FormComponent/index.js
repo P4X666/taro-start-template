@@ -13,7 +13,10 @@
  * 之所以将非填写类的都放在 picker 中，而不是 input 中，
  * 是因为 picker 的主要作用就是选择，所以类似于获取所在坐标之类的操作都统一放在 picker 中
  * 
- * 目前只有 picker 和 checkbox 是做了特殊处理
+ * 目前只有 picker 和 checkbox switch是做了特殊处理
+ * checkbox switch 只修改了 value
+ * 
+ * 之所以没做 FormCheckboxGroup ，是因为 目前没在业务中发现有此类场景，该组件的功能和picker重合，切基本上都被 picker 很好的替代
  * 
  */
 
@@ -22,6 +25,7 @@ import FormPicker from './FormPicker';
 import FormRate from './FormRate';
 import FormSwitch from './FormSwitch';
 import FormImagePicker from './FormImagePicker';
+import FormCheckbox from './FormCheckbox';
 
 export {
   FormInput,
@@ -29,4 +33,5 @@ export {
   FormRate,
   FormSwitch,
   FormImagePicker,
+  FormCheckbox
 };

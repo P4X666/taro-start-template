@@ -53,6 +53,10 @@ function useFormStore(initialValues) {
     });
   };
   const validateField = (name = '') => {
+    if (!name) {
+      console.error('请输入要校验的 name');
+      return;
+    }
     const { value, rules } = fields[name];
     const afterRules = transfromRules(rules);
     const descriptor = {
@@ -88,7 +92,6 @@ function useFormStore(initialValues) {
     let isValid = true;
     let errors = {};
     const valueMap = mapValues(fields, item => item.value);
-    // {'username': 'abc'}
     const descriptor = mapValues(fields, item => transfromRules(item.rules));
     const validator = new Schema(descriptor);
     return new Promise((res) => {
@@ -140,10 +143,7 @@ function useFormStore(initialValues) {
       });
     }
   };
-  /** 字段更新时触发回调事件 function(changedFields, allFields) */
-  const onFieldsChange = (cb) => {
-    cb && cb();
-  };
+
   return {
     fields,
     dispatch,
@@ -152,8 +152,7 @@ function useFormStore(initialValues) {
     getFieldValue,
     setFieldValue,
     validateAllFields,
-    resetFields,
-    onFieldsChange
+    resetFields
   };
 }
 

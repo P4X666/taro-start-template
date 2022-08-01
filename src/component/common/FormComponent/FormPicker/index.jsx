@@ -1,7 +1,6 @@
 import { Picker } from '@tarojs/components';
 import { useMemo } from 'react';
 import { AtList, AtListItem } from 'taro-ui';
-import './index.less';
 
 const FormPicker = (props) => {
   const {mode, range, value, onClick, onChange, hyphens = ' ', ...restProps } = props;
@@ -36,7 +35,6 @@ const FormPicker = (props) => {
     return showValue();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ range, value ]);
-  console.log(renderValue, 'renderValue');
   return mode
     ? <Picker mode={mode} range={range} style={fullWidth} onChange={_onChange} {...restProps}>
       <AtList>
@@ -54,5 +52,5 @@ const FormPicker = (props) => {
       />
     </AtList>;
 };
-
+FormPicker.type = 'FormItem';
 export default FormPicker;
