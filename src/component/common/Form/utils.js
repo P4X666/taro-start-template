@@ -13,19 +13,10 @@ export const getFormItemFirstChildren = (children) => {
     console.warn('只支持一个子组件，其余会被忽略');
   }
   // 不是 Form 的子组件
-  if (childList[0].type?.type === 'FormItem') {
+  if (!childList[0].type?.type === 'FormItem') {
     console.error('子组件必须是 FormItem');
   }
   return childList[0];
-};
-
-/** 添加非必要属性 */
-export const addNonRequiredAttr = (source = {}, targetAttr = [ {key: '', value: ''} ]) => {
-  for (const iterator of targetAttr) {
-    if (iterator.value) {
-      source[iterator.key] = iterator.value;
-    }
-  }
 };
 
 export const _onErrorClick = (errMessage = '') => {
@@ -35,4 +26,22 @@ export const _onErrorClick = (errMessage = '') => {
     duration: 1500,
     mask: true
   });
+};
+/** targetAttr 的属性覆盖 source 的属性*/
+const addNonRequiredAttr = (source = {}, targetAttr = [ {key: '', value: ''} ]) => {
+  for (const iterator of targetAttr) {
+    if (iterator.value) {
+      source[iterator.key] = iterator.value;
+    }
+  }
+};
+// 覆盖原有的ui属性，在 FormComponentWrapper 中统一处理
+export const overlaidOriginalAttr = (controlProps) => {
+  const targetAttr = [
+    {key: 'label', value: ''},
+    {key: 'required', value: false},
+    {key: 'error', value: false},
+    {key: 'onErrorClick', value: () => {}},
+  ];
+  addNonRequiredAttr(controlProps, targetAttr);
 };

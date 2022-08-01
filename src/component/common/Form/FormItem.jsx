@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import FormComponentWrapper from './FormComponentWrapper';
 import { FormContext } from './useFormStore';
-import { addNonRequiredAttr, getFormItemFirstChildren, _onErrorClick } from './utils';
+import { getFormItemFirstChildren, overlaidOriginalAttr, _onErrorClick } from './utils';
 
 const FormItem = (props) => {
   const {
@@ -13,7 +13,6 @@ const FormItem = (props) => {
     getValueFromEvent,
     rules,
     validateTrigger,
-    labelName,
     isNewLine,
     className = '',
     border,
@@ -51,13 +50,9 @@ const FormItem = (props) => {
   if (rules) {
     controlProps[validateTrigger] = onValueValidate;
   }
-  const targetAttr = [
-    {key: labelName, value: ''},
-    {key: 'required', value: false},
-    {key: 'error', value: false},
-    {key: 'onErrorClick', value: () => {}},
-  ];
-  addNonRequiredAttr(controlProps, targetAttr);
+  // 覆盖原有的属性
+  overlaidOriginalAttr(controlProps);
+
   // 2 获取 children 数组的第一个元素
   const child = getFormItemFirstChildren(children);
   // 3 cloneElement，混合这个child 以及 手动的属性列表
@@ -84,7 +79,6 @@ FormItem.defaultProps = {
   trigger: 'onChange',
   validateTrigger: 'onBlur',
   getValueFromEvent: e => e,
-  labelName: 'label',
   isNewLine: false
 };
 
