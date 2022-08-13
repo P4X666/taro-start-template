@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro';
 import { useEffect, useState } from 'react';
-import ConfigurationContext from 'src/context/configuration';
+import ConfigurationContext from 'src/hooks/Configuration/configuration';
 /** 系统的配置信息 */
 const ConfigurationProvider = ({ children }) => {
   /** 安全距离 */

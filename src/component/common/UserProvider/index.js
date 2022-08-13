@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro';
 import { useRequest } from 'ahooks';
 import { useEffect, useState } from 'react';
 // import { apiLogin, apiLogout } from 'src/api';
-import UserContext from 'src/context/user';
+import UserContext from 'src/hooks/User/user';
 import { commonApi } from 'src/http/api';
 
 const loginRoute = 'pages/simpleFormExample/index';

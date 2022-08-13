@@ -1,5 +1,5 @@
 import { View } from '@tarojs/components';
-import useConfiguration from 'src/hooks/useConfiguration';
+import useConfiguration from 'src/hooks/Configuration/useConfiguration';
 import { AtButton } from 'taro-ui';
 import styles from './index.module.less';
 
