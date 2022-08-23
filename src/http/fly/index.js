@@ -1,5 +1,5 @@
 import { showErrorMessage } from 'src/utils/common';
-import { baseURL } from '@/utils/global';
+import { baseURL } from 'src/utils/global';
 import Taro from '@tarojs/taro';
 import { LOGIN_URL, TOKEN_KEY } from 'src/utils/constent';
 import { getToken } from 'src/utils/token';
@@ -29,7 +29,7 @@ const reLaunchLoginPage = () => {
   if (!isLoginPage()) {
     Taro.reLaunch({url: LOGIN_URL});
   }
-}
+};
 
 fly.interceptors.request.use(request => {
   request.headers['Content-Type'] = 'application/json;charset=utf-8';
@@ -59,6 +59,7 @@ fly.interceptors.response.use((response, promise) => {
   return promise.resolve(response.data);
 },
 (error, promise) => {
+  /** 如果没有权限，则直接跳转到登录页 */
   if ([ 401, 404 ].includes(error.status)) {
     reLaunchLoginPage();
   }

@@ -1,7 +1,7 @@
 import { CoverView, CoverImage } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import React from 'react';
-import useConfiguration from 'src/hooks/useConfiguration';
+import useConfiguration from 'src/hooks/Configuration/useConfiguration';
 import styles from './index.module.less';
 
 const config = {
