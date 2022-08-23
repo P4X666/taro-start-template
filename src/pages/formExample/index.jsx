@@ -1,9 +1,8 @@
 import { useRef } from 'react';
 import { View, Button } from '@tarojs/components';
-import Form from 'src/components/common/Form';
 import Taro from '@tarojs/taro';
+import Form, { FormImagePicker, FormInput, FormPicker, FormRate, FormSwitch } from 'fe-taro-form';
 import { gradeList, multiSelector } from 'src/utils/constent';
-import { FormImagePicker, FormInput, FormPicker, FormRate, FormSwitch } from 'src/components/common/FormComponent';
 import styles from './index.module.less';
 
 const FormExample = () => {

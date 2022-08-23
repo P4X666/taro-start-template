@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { View, Button } from '@tarojs/components';
-import Form from 'src/components/common/Form';
-import { AtCheckbox, AtDivider, AtInput } from 'taro-ui';
+import { AtDivider } from 'taro-ui';
+import Form, { FormInput, FormCheckbox } from 'fe-taro-form';
 import styles from './index.module.less';
 
 const SimpleFormExample = () => {
@@ -57,13 +57,13 @@ const SimpleFormExample = () => {
       <View className={styles.box}>
         <Form ref={formRef} initialValues={{ username: '用户名1' }}>
           <Form.Item label="用户名" name="username" rules={[ { type: 'string', required: true, message: '用户名必填' } ]}>
-            <AtInput />
+            <FormInput />
           </Form.Item>
           <Form.Item label="密码" name="password" rules={[ { type: 'string', required: true, min: 3, max: 8, message: '密码长度必须在3-8个字符之间' } ]}>
-            <AtInput type="password" />
+            <FormInput type="password" />
           </Form.Item>
           <Form.Item label="重复密码" name="confirmPwd" rules={confirmRules}>
-            <AtInput type="password" />
+            <FormInput type="password" />
           </Form.Item>
         </Form>
         <Button form-type="submit" onClick={onSubmit} className={styles.submit}>登录</Button>
@@ -76,12 +76,12 @@ const SimpleFormExample = () => {
                 <>
                   <View className={styles.formItem}>
                     <Form.Item isNewLine label="用户名" name="username" rules={[ { type: 'string', required: true, message: '用户名必填' } ]}>
-                      <AtInput />
+                      <FormInput />
                     </Form.Item>
                   </View>
                   <View className={styles.formItem}>
                     <Form.Item isNewLine label="密码" name="password" rules={[ { type: 'string', required: true, min: 3, max: 8, message: '密码长度必须在3-8个字符之间' } ]}>
-                      <AtInput type="password" />
+                      <FormInput type="password" />
                     </Form.Item>
                   </View>
                   <View className={styles.formItem}>
@@ -91,7 +91,7 @@ const SimpleFormExample = () => {
                       valuePropName="selectedList"
                       rules={[ { type: 'array', len: 1, message: '请同意协议' } ]}
                     >
-                      <AtCheckbox options={checkboxOption} />
+                      <FormCheckbox options={checkboxOption} />
                     </Form.Item>
                     <View className={styles.agreementText}>注册即代表你同意<View className={styles.agreement}>用户协议</View></View>
                   </View>
