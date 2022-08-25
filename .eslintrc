@@ -1,13 +1,17 @@
 {
   "extends": ["taro/react"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "globals": {
-    "defineAppConfig":"readonly",
-    "definePageConfig":"readonly",
-    "wx":"readonly"
+    "defineAppConfig": "readonly",
+    "definePageConfig": "readonly",
+    "wx": "readonly"
   },
   "rules": {
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope" : "off",
+    "react/react-in-jsx-scope": "off",
     "semi": ["error", "always"],
     "quotes": [
       "error",

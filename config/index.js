@@ -12,7 +12,7 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [
-    ['@tarojs/plugin-html'],
+    [ '@tarojs/plugin-html' ],
   ],
   defineConstants: {
   },
@@ -24,7 +24,7 @@ const config = {
   },
   framework: 'react',
   alias: {
-    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/component': path.resolve(__dirname, '..', 'src/component'),
     '@/utils': path.resolve(__dirname, '..', 'src/utils'),
     '@/hooks': path.resolve(__dirname, '..', 'src/hooks'),
     src: path.resolve(__dirname, '..', 'src'),
@@ -53,7 +53,7 @@ const config = {
     }
   },
   mini: {
-    hot:true,
+    hot: true,
     postcss: {
       // 小程序不需要浏览器前缀
       autoprefixer: {

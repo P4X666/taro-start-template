@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro';
-import { TOKEN_KEY } from 'src/utils/constent';
+import { LOGIN_URL, TOKEN_KEY } from 'src/utils/constent';
 import { baseURL } from 'src/utils/global';
 import { getToken } from 'src/utils/token';
 

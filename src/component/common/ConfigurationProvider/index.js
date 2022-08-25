@@ -4,7 +4,7 @@ import ConfigurationContext from 'src/hooks/Configuration/configuration';
 /** 系统的配置信息 */
 const ConfigurationProvider = ({ children }) => {
   /** 安全距离 */
-  const [safeArea, updateSafeArea] = useState({});
+  const [ safeArea, updateSafeArea ] = useState({});
   /** 在自定义 tab 栏时，跟随 tab 栏的变化 */
   const [ tabBarActiveIndex, setTabBarActiveIndex ] = useState(0);
   /** 窗口可用高度 */
