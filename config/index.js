@@ -98,7 +98,7 @@ const config = {
       }
     }
   },
-  esnextModules: [ 'taro-ui' ]
+  esnextModules: [ 'taro-ui', 'fe-taro-form' ]
 };
 
 module.exports = function (merge) {

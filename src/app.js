@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import Taro from '@tarojs/taro';
+import 'taro-ui/dist/style/index.scss';
+import 'fe-taro-form/dist/index.css';
 import ConfigurationProvider from './components/common/ConfigurationProvider';
 import UserProvider from './components/common/UserProvider';
-import 'taro-ui/dist/style/index.scss';
 import './app.less';
 
 const App = (props) => {

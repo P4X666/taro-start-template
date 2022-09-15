@@ -62,6 +62,7 @@ fly.interceptors.response.use((response, promise) => {
   /** 如果没有权限，则直接跳转到登录页 */
   if ([ 401, 404 ].includes(error.status)) {
     reLaunchLoginPage();
+    fly.clear(); // 清空后续请求
   }
   const errorMessage = error?.response?.data?.message;
   showErrorMessage(errorMessage);

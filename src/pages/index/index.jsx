@@ -1,6 +1,7 @@
-import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
-import './index.less'
+import { Component } from 'react';
+import { View, Text } from '@tarojs/components';
+import dayjs from 'dayjs';
+import './index.less';
 
 export default class Index extends Component {
 
@@ -16,9 +17,9 @@ export default class Index extends Component {
 
   render () {
     return (
-      <View className='index'>
+      <View className="index">
         <Text>Hello world! { dayjs().format() }</Text>
       </View>
-    )
+    );
   }
 }
